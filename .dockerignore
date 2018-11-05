@@ -1,3 +1,5 @@
 env.sample
 README.md
 *.pyc
+terraform/
+scripts/
