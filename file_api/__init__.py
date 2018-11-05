@@ -1,4 +1,5 @@
-from flask import Flask
+from flask import Flask, abort, make_response, jsonify
+import werkzeug.exceptions as exceptions
 import os
 
 def create_app(test_config=None):
@@ -9,6 +10,14 @@ def create_app(test_config=None):
     @app.route('/ping')
     def healthcheck():
         return 'pong'
+
+    @app.errorhandler(404)
+    def not_found(e):
+        return make_response(jsonify( { 'error': 'Not found' } ), 404)
+
+    @app.errorhandler(500)
+    def server_error(e):
+        return make_response(jsonify( { 'error': 'Server error' } ), 500)
 
     from file_api import api
     app.register_blueprint(api.bp)
