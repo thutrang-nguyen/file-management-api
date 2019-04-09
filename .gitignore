@@ -4,3 +4,4 @@ terraform.tfstate*
 .terraform*
 tfplan
 ignore_2
+ignore_1
