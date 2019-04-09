@@ -1,7 +1,7 @@
 build:
 	docker build --rm -t $(DOCKER_REGISTRY)$(PROJECT_NAME):$(BRANCH_NAME) .
 push:
-	$(aws ecr get-login --region $(AWS_DEFAULT_REGION) --no-include-email)
+	$(aws ecr get-login --region ${AWS_DEFAULT_REGION} --no-include-email)
 	docker push $(DOCKER_REGISTRY)$(PROJECT_NAME):$(BRANCH_NAME)
 run:
 	docker run -d --name=$(PROJECT_NAME) \
